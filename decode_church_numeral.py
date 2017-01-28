@@ -11,7 +11,7 @@ from parser import tokenize, parse
 
 def decode_church_numeral(exp):
     if not (isinstance(exp, Abstraction) and isinstance(exp.term, Abstraction)):
-        raise ValueError("not church numeral")
+        raise ValueError("not Church numeral")
 
     a, b = exp.variable, exp.term.variable
     exp = exp.term.term
@@ -24,7 +24,7 @@ def decode_church_numeral(exp):
     if exp == b:
         return counter
     else:
-        raise ValueError("not church numeral")
+        raise ValueError("not Church numeral")
 
 if __name__ == '__main__':
     from sys import stdin
