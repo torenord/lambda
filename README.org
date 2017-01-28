@@ -1,0 +1,23 @@
+* Lambda Calculus
+
+** Example (3*4 = 12)
+
+   #+BEGIN_SRC
+   > echo "(((λ m . (λ n . (λ f . (m (n f))))) (λ f . (λ x . (f (f (f x)))))) (λ f . (λ x . (f (f (f (f x)))))))" > mult.lambda
+   > cat mult.lambda | ./reduction.py
+     (λ f . (λ x . (f (f (f (f (f (f (f (f (f (f (f (f x))))))))))))))
+   > cat mult.lambda | ./reduction.py | ./decode_church_numeral.py
+     12
+   #+END_SRC
+
+** Grammar specification
+
+   #+BEGIN_SRC
+   <term>        ::= <variable> | <abstraction> | <application>
+   <variable>    ::= a | b | c | d | e | f | g | h | i | j | k | l | m
+                   | n | o | p | q | r | s | t | u | v | w | x | y | z
+                   | v<digit>+
+   <digit>       ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+   <abstraction> ::= (λ <variable> . <term>)
+   <application> ::= (<term> <term>)
+   #+END_SRC
